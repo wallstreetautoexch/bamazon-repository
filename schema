@@ -1,0 +1,46 @@
+CREATE DATABASE departments;
+USE departments;
+CREATE TABLE departments(
+  id              INTEGER     AUTO_INCREMENT NOT NULL,
+  department_name VARCHAR(30) NOT NULL,
+  over_head_costs DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (id)
+  );
+ CREATE TABLE products(
+  id              INTEGER     AUTO_INCREMENT NOT NULL,
+  product_name    VARCHAR(30) NOT NULL,
+  department_id   INTEGER(11) NOT NULL,
+  price           DECIMAL(7,2)     NOT NULL,
+  stock_quantity  INTEGER(11) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(department_id) references departments(id) 
+  );
+ CREATE TABLE sales(
+  id                  INTEGER     AUTO_INCREMENT NOT NULL,
+  product_id          INTEGER(11) NOT NULL,
+  quanttity_purchased INTEGER(11) NOT NULL,
+  created_at          TIMESTAMP,
+  PRIMARY KEY(id),
+  FOREIGN KEY(product_id) references products(id)
+  );
+
+INSERT INTO departments (department_name, over_head_costs) VALUES ('Auto Sales', 1.50);
+INSERT INTO departments (department_name, over_head_costs) VALUES ('Auto Parts Sales', 2.50);
+INSERT INTO departments (department_name, over_head_costs) VALUES ('Auto Tools Sales', 3.50);
+
+
+
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('1976 Pacer', 1, 8400.00, 1);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('1980 Rolls Royce', 1, 15995.99, 1);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('1987 Colony Park', 1, 1700.65, 1);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('PER One Oil Filter', 2, 7.95, 10);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('FRAM 1099 Air Filter', 2, 4.78, 3);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('P215/R75/15 White Wall Tire', 2, 95.89, 5);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('open end Wrench', 3, 11.00, 2);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('Socket Set 1/2 Inch', 3, 89.95, 100);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('Star Socket Set', 3, 105.88, 34);
+INSERT INTO products (product_name, department_id, price, stock_quantity) VALUES ('NOIDE Light Set', 3, 35.77, 10);
+
+SELECT * FROM departments;
+SELECT * FROM products;
+SELECT * FROM sales;
